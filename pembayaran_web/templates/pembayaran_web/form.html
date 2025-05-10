@@ -7,12 +7,138 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+      body {
+        background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+        min-height: 100vh;
+      }
+      .card {
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+        border: none;
+        background: rgba(255,255,255,0.85);
+        backdrop-filter: blur(4px);
+      }
+      .form-title {
+        letter-spacing: 1px;
+        font-weight: 700;
+        color: #2563eb;
+        text-shadow: 0 2px 8px #b6c6e6;
+      }
+      .form-subtitle {
+        font-size: 1rem;
+        color: #6c757d;
+        margin-bottom: 1.5rem;
+      }
+      .form-control {
+        border-radius: 0.75rem;
+        border: 1.5px solid #b6c6e6;
+        background: #f8fafc;
+      }
+      .form-control:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 0.2rem rgba(37,99,235,.15);
+        background: #fff;
+      }
+      .btn-primary {
+        background: linear-gradient(90deg, #2563eb 0%, #60a5fa 100%);
+        border: none;
+        border-radius: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 16px 0 rgba(37,99,235,0.10);
+        transition: background 0.2s;
+      }
+      .btn-primary:hover {
+        background: linear-gradient(90deg, #1d4ed8 0%, #3b82f6 100%);
+      }
+      .decor {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+        position: absolute;
+        top: -45px;
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 4px 24px 0 rgba(37,99,235,0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 2.5rem;
+        z-index: 10;
+        border: 4px solid #fff;
+      }
+      .card {
+        margin-top: 40px;
+      }
+      /* Styling for floating label effect */
+      .form-floating > .form-control:focus ~ label,
+      .form-floating > .form-control:not(:placeholder-shown) ~ label {
+        opacity: .65;
+        transform: scale(.85) translateY(-0.8rem) translateX(0.15rem);
+      }
+    </style>
   </head>
-  <body class="container mt-5">
-    <h2>Input Data Pelanggan</h2>
-    <form method="post">
-      {% csrf_token %} {{ form.as_p }}
-      <button type="submit" class="btn btn-primary">Simpan</button>
-    </form>
+  <body>
+    <div class="container d-flex justify-content-center align-items-center" style="min-height:100vh;">
+      <div class="position-relative" style="width: 100%; max-width: 430px;">
+        <div class="decor">
+          <i class="bi bi-droplet-fill"></i>
+        </div>
+        <div class="card shadow-lg p-4 pt-5" style="z-index:2; position:relative;">
+          <div class="text-center mb-4 mt-2">
+            <h2 class="form-title mb-1">Input Data Pelanggan</h2>
+            <div class="form-subtitle">Silakan isi data pelanggan dengan benar</div>
+          </div>
+          <form method="post" autocomplete="off">
+            {% csrf_token %}
+            <div class="mb-3 form-floating">
+              <input type="text" name="no_pelanggan" id="id_no_pelanggan" class="form-control" placeholder="No. Pelanggan" required>
+              <label for="id_no_pelanggan">No. Pelanggan</label>
+            </div>
+            <div class="mb-3 form-floating">
+              <input type="text" name="nama" id="id_nama" class="form-control" placeholder="Nama Pelanggan" required>
+              <label for="id_nama">Nama Pelanggan</label>
+            </div>
+            <div class="mb-3 form-floating">
+              <input type="text" name="alamat" id="id_alamat" class="form-control" placeholder="Alamat" required>
+              <label for="id_alamat">Alamat</label>
+            </div>
+            <div class="mb-3 form-floating">
+              <select name="bulan" id="id_bulan" class="form-control" required>
+                <option value="" disabled selected>Pilih Bulan</option>
+                <option value="Januari">Januari</option>
+                <option value="Februari">Februari</option>
+                <option value="Maret">Maret</option>
+                <option value="April">April</option>
+                <option value="Mei">Mei</option>
+                <option value="Juni">Juni</option>
+                <option value="Juli">Juli</option>
+                <option value="Agustus">Agustus</option>
+                <option value="September">September</option>
+                <option value="Oktober">Oktober</option>
+                <option value="November">November</option>
+                <option value="Desember">Desember</option>
+              </select>
+              <label for="id_bulan">Bulan</label>
+            </div>
+            <div class="mb-3 form-floating">
+              <input type="number" name="meter_awal" id="id_meter_awal" class="form-control" placeholder="Meter Awal" required>
+              <label for="id_meter_awal">Meter Awal</label>
+            </div>
+            <div class="mb-3 form-floating">
+              <input type="number" name="meter_akhir" id="id_meter_akhir" class="form-control" placeholder="Meter Akhir" required>
+              <label for="id_meter_akhir">Meter Akhir</label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 shadow-sm py-2 fs-5 mt-2">
+              <i class="bi bi-save me-2"></i>Simpan
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
